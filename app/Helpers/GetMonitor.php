@@ -107,4 +107,23 @@ class GetMonitor
         return $info;
     }
 
+    /**
+     * @description:取得Loading 資訊
+     *
+     * @return: $info
+     */
+    public static function getLoading()
+    {
+        $info = array();
+        $load = sys_getloadavg();
+        $disk = disk_free_space("/");
+
+        $info['loading_0'] = (String)round($load[0], 2);
+        $info['loading_1'] = (String)round($load[1], 2);
+        $info['loading_2'] = (String)round($load[2], 2);
+        $info['disk_free'] = (String)round($disk/1024/1024/1024);
+
+        return $info;
+    }
+
 }
